@@ -11,6 +11,8 @@ const pipe = (...fns) => curry(l => fns.reduce((a, fn) => fn(a), l));
 const compose = (...fns) => curry(l => fns.reverse().reduce((a, fn) => fn(a), l));
 const reverseArgs = fn => (...args) => fn(...args.reverse());
 const wrap = (fn, wrapper) => (...args) => wrapper(fn, ...args);
+const identity = x => x;
+const constant = x => () => x;
 
 // object
 const set = curry((name, value, obj) => ({ ...obj, [name]: value }));

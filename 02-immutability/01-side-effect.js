@@ -1,38 +1,37 @@
-const me = {
-  id: 20,
-  firstName: 'Julien',
-  lastName: 'avert',
-  level: 9001,
-  address: {
-    street: '10 rue du Petit Curieux',
-    city: 'Grenoble'
+// ? on peut conserver toute les "versions" d'un objet au cours de ses changements
+// ? immutabilité = thread safety !
+
+// ! immuatbilité généralement "shallow" en js
+
+const arr = [0, 1, 2, 4, 8];
+
+console.log(arr.map(i => Math.pow(i, 2)));
+console.log(arr.map(i => Math.pow(i, 4)));
+console.log(arr);
+
+const objs = [
+  { name: 'James', active: true, deceased: false },
+  { name: 'Kirk', active: true, deceased: false },
+  { name: 'Robert', active: true, deceased: false },
+  { name: 'Lars', active: true, deceased: false },
+  { name: 'Cliff', active: false, deceased: true },
+  { name: 'Dave', active: false, deceased: false }
+];
+
+console.log('Original:', objs.map(m => m.name));
+
+const objs2 = objs.map(
+  m => (!m.deceased ? { ...m } : { ...m, name: m.name + ' †' })
+);
+console.log('Imm. map:', objs2.map(m => m.name));
+console.log('Original:', objs.map(m => m.name));
+
+const objs3 = objs.map(m => {
+  if (m.deceased) {
+    m.name += ' †';
   }
-};
+  return m;
+});
 
-function verifyPerson(obj) {
-  // ? verifier que l'utilisateur est correct
-  const valid = obj && obj.id && obj.firstName && obj.lastName && obj.address;
-  if (!valid) {
-    throw new Error('Invalid user');
-  }
-}
-
-function augmentPerson(obj) {
-  obj.fullName = obj.firstName + obj.lastName;
-}
-
-function storePerson(obj) {
-  // * GDPR!!! on vire les adresses
-  delete obj.address;
-  // TODO store in db
-}
-
-function augmentAndVerifyPerson(obj) {
-  verifyPerson(obj);
-  augmentPerson(obj);
-  storePerson(obj);
-
-  console.log(obj.address.street);
-}
-
-augmentAndVerifyPerson(me);
+console.log('Mut. map:', objs3.map(m => m.name));
+console.log('Original:', objs.map(m => m.name));
