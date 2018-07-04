@@ -1,9 +1,19 @@
-// * fat arrow
+// * const & let
+let troll = 'MRI';
+troll = 'JAV'; // ok
+
+const appleFanboy = 'MRI';
+appleFanboy = 'JAV'; // crashes
+
+// * arrow functions
 var test = function(x) {
   return x + 8;
 };
 
 const test = x => x + 8;
+const test = x => {
+  return x + 8;
+}
 
 // * rest params
 const test = (a, b, ...rest) => {

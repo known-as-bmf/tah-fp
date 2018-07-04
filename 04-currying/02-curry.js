@@ -1,3 +1,5 @@
+const _ = require('../helpers');
+
 // ? le principe ?
 // ? pouvoir utiliser une fonction de manière partielle
 

@@ -26,6 +26,7 @@ const objs2 = objs.map(
 console.log('Imm. map:', objs2.map(m => m.name));
 console.log('Original:', objs.map(m => m.name));
 
+// ! attention
 const objs3 = objs.map(m => {
   if (m.deceased) {
     m.name += ' †';

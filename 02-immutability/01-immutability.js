@@ -26,6 +26,7 @@ try {
   console.error(e);
 }
 
+// ! attention
 me.address.street = '15 chemin du Petit Filou';
 
 console.log(me);
