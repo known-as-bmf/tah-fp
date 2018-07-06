@@ -18,4 +18,4 @@ try {
 
 
 logSalutation(user);
-_.map(logSalutation, new _.Maybe(null));
+_.map(logSalutation, _.Maybe.Nothing);

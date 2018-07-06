@@ -78,6 +78,12 @@ class Maybe {
   constructor(value) {
     this.value = value;
   }
+  static get Nothing() {
+    return new Maybe(null);
+  }
+  static Just(value) {
+    return new Maybe(value);
+  }
   map(fn) { return !isNil(this.value) ? new Maybe(fn(this.value)) : new Maybe(this.value); }
 }
 
