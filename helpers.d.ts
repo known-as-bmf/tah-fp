@@ -40,11 +40,18 @@ interface CurriedFunction6<T1, T2, T3, T4, T5, T6, R> {
 export function noop(): void;
 export function isNil<T>(x: T): boolean;
 export function isFn<T>(x: T): x is Function;
+export function not<T>(x: T): T;
 
 export function identity<T>(x: T): T;
 export function identity<T>(): (x: T) => T;
 export function constant<T>(x: T): () => T;
 export function constant<T>(): (x: T) => () => T;
+
+export function complement(fn: (...args) => any): (...args) => boolean;
+export function wrap<T extends (...args) => any>(
+  wrapper: (wrappee: T, ...args) => any,
+  wrappee: T
+): T;
 
 export function lt(a: number, b: number): boolean;
 export function lt(a: number): (b: number) => boolean;
@@ -71,6 +78,15 @@ export function filter<T>(
   fn: (x: T) => boolean
 ): (list: ReadonlyArray<T>) => T[];
 
+export function prepend<T>(a: T[], b: T[]): T[];
+export function prepend<T>(a: T[]): (b: T[]) => T[];
+export function prepend(a: string, b: string): string;
+export function prepend(a: string): (b: string) => string;
+export function append<T>(a: T[], b: T[]): T[];
+export function append<T>(a: T[]): (b: T[]) => T[];
+export function append(a: string, b: string): string;
+export function append(a: string): (b: string) => string;
+
 export function times<T>(fn: (i: number) => T, n: number): T[];
 export function times<T>(fn: (i: number) => T): (n: number) => T[];
 
@@ -87,6 +103,8 @@ export function end<T>(): (list: ReadonlyArray<T>) => T[];
 
 export function find<T>(fn: (x: T) => boolean, list: ReadonlyArray<T>): T;
 export function find<T>(fn: (x: T) => boolean): (list: ReadonlyArray<T>) => T;
+
+export function compact<T>(list: ReadonlyArray<T>): T[];
 
 export function all<T>(fn: (x: T) => boolean, list: ReadonlyArray<T>): boolean;
 export function all<T>(

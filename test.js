@@ -35,3 +35,17 @@ const condCompose = _.map(
 
 console.log(condPipe(arr));
 console.log(condCompose(arr));
+
+const arr2 = [1, 2, undefined, 4, 5];
+
+console.log(_.compact(arr2));
+
+function lol(str) {
+  console.log('lol', str);
+}
+
+_.wrap((fn, str) => {
+  console.log('before');
+  fn(str);
+  console.log('after');
+}, lol)('wrapped');

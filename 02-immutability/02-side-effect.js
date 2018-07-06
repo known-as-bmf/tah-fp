@@ -9,7 +9,7 @@ console.log(arr.map(i => Math.pow(i, 2)));
 console.log(arr.map(i => Math.pow(i, 4)));
 console.log(arr);
 
-const objs = [
+const metallica = [
   { name: 'James', active: true, deceased: false },
   { name: 'Kirk', active: true, deceased: false },
   { name: 'Robert', active: true, deceased: false },
@@ -18,21 +18,21 @@ const objs = [
   { name: 'Dave', active: false, deceased: false }
 ];
 
-console.log('Original:', objs.map(m => m.name));
+console.log('Original:', metallica.map(m => m.name));
 
-const objs2 = objs.map(
+const metallica2 = metallica.map(
   m => (!m.deceased ? { ...m } : { ...m, name: m.name + ' †' })
 );
-console.log('Imm. map:', objs2.map(m => m.name));
-console.log('Original:', objs.map(m => m.name));
+console.log('Imm. map:', metallica2.map(m => m.name));
+console.log('Original:', metallica.map(m => m.name));
 
 // ! attention
-const objs3 = objs.map(m => {
+const metallica3 = metallica.map(m => {
   if (m.deceased) {
     m.name += ' †';
   }
   return m;
 });
 
-console.log('Mut. map:', objs3.map(m => m.name));
-console.log('Original:', objs.map(m => m.name));
+console.log('Mut. map:', metallica3.map(m => m.name));
+console.log('Original:', metallica.map(m => m.name));

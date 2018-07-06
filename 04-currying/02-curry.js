@@ -3,7 +3,20 @@ const _ = require('../helpers');
 // ? le principe ?
 // ? pouvoir utiliser une fonction de manière partielle
 
-// ? currying "à la main"
+// ? currying simple "à la main"
+function mult(a) {
+  return b => a * b;
+}
+
+const multBy10 = mult(10);
+
+console.log(multBy10(2));
+console.log(multBy10(8));
+
+console.log(multBy10(2)(2));
+
+
+// ? currying un peu plus complet
 function add(a, b) {
   if (_.isNil(b)) {
     return add.bind(null, a);

@@ -22,3 +22,8 @@ const arr = [2, 3, 4, 5, 6, 7, 8];
 console.log(pipe1(arr));
 console.log(pipe2(arr));
 console.log(pipe3(arr));
+
+
+// ? composition créée une fonction à partir de fonctions
+// ? extrêmement haut niveau
+// ? mathematiques !
