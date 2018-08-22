@@ -1,7 +1,6 @@
 // ? on peut conserver toute les "versions" d'un objet au cours de ses changements
 // ? immutabilité = thread safety !
 
-// ! immuatbilité généralement "shallow" en js
 
 const arr = [0, 1, 2, 4, 8];
 
@@ -26,13 +25,11 @@ const metallica2 = metallica.map(
 console.log('Imm. map:', metallica2.map(m => m.name));
 console.log('Original:', metallica.map(m => m.name));
 
-// ! attention
+// ! immuatbilité généralement "shallow" en js
 const metallica3 = metallica.map(m => {
-  if (m.deceased) {
-    m.name += ' †';
-  }
+  m.deceased = false;
   return m;
 });
 
-console.log('Mut. map:', metallica3.map(m => m.name));
-console.log('Original:', metallica.map(m => m.name));
+console.log('Mut. map:', metallica3.map(m => m.deceased));
+console.log('Original:', metallica.map(m => m.deceased));

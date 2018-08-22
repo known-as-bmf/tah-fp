@@ -21,6 +21,6 @@ kapoué(h)(w, m);
 kapoué(h, w)(m);
 kapoué(h)(w)(m);
 
-// ? une fonction curryed retourne une nouvelle fonction
+// ? une fonction currié retourne une nouvelle fonction
 // ? a chaque fois qu'elle est appellée, jusqu'a ce qu'on
 // ? lui ai passé tout ses arguments.

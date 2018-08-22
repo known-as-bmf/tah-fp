@@ -1,7 +1,7 @@
 //@ts-check
 const _ = require('./helpers');
 
-const arr = _.times(_.identity(), 20);
+const arr = _.times(_.id, 20);
 
 console.log(arr);
 console.log(_.first(arr));
@@ -24,11 +24,9 @@ const condPipe = _.map(
 
 const condCompose = _.map(
   _.compose(
-    _.compose(
-      _.doIf(_.gte(10), v => v * 10),
-      _.doIf(_.lt(10), v => v * -1),
-      _.get('value')
-    ),
+    _.doIf(_.gte(10), v => v * 10),
+    _.doIf(_.lt(10), v => v * -1),
+    _.get('value'),
     value => ({ value })
   )
 );

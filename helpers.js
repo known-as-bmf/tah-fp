@@ -1,35 +1,53 @@
-// utils
-const noop = () => {};
-const isNil = v => v == null;
-const isFn = v => !isNil(v) && typeof v === 'function';
-const not = v => !v;
-
-// functions
+// * functions
 const curry = (fn, arity = fn.length, ...args) =>
   arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
 const partial = (fn, ...args) => fn.bind(fn, ...args);
-const pipe = (...fns) => l => fns.reduce((a, fn) => fn(a), l);
-const compose = (...fns) => pipe(...fns.reverse());
+const pipe = (...fns) => x => fns.reduce((y, fn) => fn(y), x);
+const compose = (...fns) => x => fns.reduceRight((y, fn) => fn(y), x);
 const reverseArgs = fn => (...args) => fn(...args.reverse());
 const wrap = curry((wrapper, fn) => (...args) => wrapper(fn, ...args));
-const identity = curry(x => x);
-const constant = curry(x => () => x);
 const doIf = curry((cond, fnIf, v) => (cond(v) ? fnIf(v) : v));
 const doIfElse = curry(
   (cond, fnIf, fnElse, v) => (cond(v) ? fnIf(v) : fnElse(v))
 );
+const memoize = f => {
+  const cache = {};
+  return (...args) => {
+    const key = JSON.stringify(args);
+    const cached = cache[key];
+
+    if (isNil(cached)) return cache[key] = f(...args);
+    return cached;
+  };
+}
+
+// * utils
+const noop = () => {};
+const isNil = v => v == null;
+const isFn = v => !isNil(v) && typeof v === 'function';
+const id = curry(x => x);
+const constant = curry(x => () => x);
 const complement = fn =>
   compose(
     not,
     fn
   );
 
-// math
+// * math
 const add = curry((a, b) => a + b);
+const sub = curry((a, b) => b - a);
+const subLeft = curry((a, b) => a - b);
+const mult = curry((a, b) => a * b);
+const pow = curry((pow, n) => Math.pow(n, pow));
 
 // str
 const prepend = curry((a, b) => a.concat(b));
 const append = curry((a, b) => b.concat(a));
+const match = curry((pattern, str) => str.match(pattern));
+const replace = curry((what, repl, str) => str.replace(what, repl));
+const split = curry((sep, s) => s.split(sep));
+const lower = curry(s => s.toLowerCase());
+const size = curry(s => s.length);
 
 // cond
 const equals = curry((a, b) => a === b);
@@ -37,6 +55,7 @@ const lt = curry((a, b) => a > b);
 const lte = curry((a, b) => a >= b);
 const gt = curry((a, b) => a < b);
 const gte = curry((a, b) => a <= b);
+const not = v => !v;
 
 // object
 const set = curry((name, value, obj) => ({ ...obj, [name]: value }));
@@ -53,6 +72,8 @@ const nth = curry((n, l) => l[n + 1]);
 
 const start = curry(l => l.slice(0, l.length - 1));
 const end = curry(l => l.slice(1));
+
+const join = curry((s, l) => l.join(s));
 
 const find = curry((fn, l) => l.find(fn));
 const all = curry((fn, l) => l.every(fn));
@@ -72,19 +93,24 @@ const sortBy = curry((compFn, l) =>
 );
 
 // chain
-const tap = curry((fn, v) => (fn(v), v));
+const tap = curry((fn, x) => (fn(x), x));
 
 class Maybe {
   constructor(value) {
-    this.value = value;
+    this.__value = value;
   }
-  static get Nothing() {
-    return new Maybe(null);
-  }
-  static Just(value) {
+  static of(value) {
     return new Maybe(value);
   }
-  map(fn) { return !isNil(this.value) ? new Maybe(fn(this.value)) : new Maybe(this.value); }
+  static get Nothing() {
+    return Maybe.of(null);
+  }
+  static Just(value) {
+    return Maybe.of(value);
+  }
+  map(fn) {
+    return isNil(this.__value) ? Maybe.of(null) : Maybe.of(fn(this.__value));
+  }
 }
 
 module.exports = {
@@ -109,27 +135,38 @@ module.exports = {
   get,
   gt,
   gte,
-  identity,
+  id,
   isFn,
   isNil,
+  join,
   keys,
   last,
+  lower,
   lt,
   lte,
   map,
+  match,
+  memoize,
   merge,
+  mult,
   none,
   noop,
   nth,
   partial,
   pipe,
+  pow,
   prepend,
   reduce,
+  replace,
   reverseArgs,
   set,
+  size,
   skip,
   sortBy,
+  split,
   start,
+  sub,
+  subLeft,
   take,
   tap,
   times,

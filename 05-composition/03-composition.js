@@ -1,29 +1,22 @@
 const _ = require('../helpers');
 
-// ? composition de composition 😎
+// ? peut servir d'optimisation dans certains cas
+const arr = [4, 6, 8];
 
-const pipe1 = _.pipe(
-  _.filter(x => x >= 5),
-  _.map(x => x * x)
+const pipeFn = _.pipe(
+  _.map(i => i + 5),
+  _.map(i => i * 2)
 );
 
-const pipe2 = _.pipe(
-  pipe1,
-  _.first
+const optimFn = _.map(
+  _.pipe(
+    i => i + 5,
+    i => i * 2
+  )
 );
 
-const pipe3 = _.pipe(
-  pipe2,
-  v => v * 2 - 8,
-  v => 'Pipes are fun ❤ Here is proof => ' + v
-);
+const piped = pipeFn(arr); // ? deux parcours
+const optim = optimFn(arr); // ? un seul parcours
 
-const arr = [2, 3, 4, 5, 6, 7, 8];
-console.log(pipe1(arr));
-console.log(pipe2(arr));
-console.log(pipe3(arr));
-
-
-// ? composition créée une fonction à partir de fonctions
-// ? extrêmement haut niveau
-// ? mathematiques !
+console.log(piped);
+console.log(optim);

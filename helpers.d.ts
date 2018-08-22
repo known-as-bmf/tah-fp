@@ -42,8 +42,8 @@ export function isNil<T>(x: T): boolean;
 export function isFn<T>(x: T): x is Function;
 export function not<T>(x: T): T;
 
-export function identity<T>(x: T): T;
-export function identity<T>(): (x: T) => T;
+export function id<T>(x: T): T;
+export function id<T>(): (x: T) => T;
 export function constant<T>(x: T): () => T;
 export function constant<T>(): (x: T) => () => T;
 

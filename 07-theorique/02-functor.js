@@ -8,19 +8,32 @@ const _ = require('../helpers');
 
 // ? c'est comme un interface
 
-
 // ? Array est un functor
 console.log([1, 2].map(i => i + 1));
 
-
-class MyObject {
+// ? pointed functor
+class Container {
   constructor(value) {
-    this.value = value;
+    this.__value = value;
+  }
+
+  static of(value) {
+    return new Container(value);
   }
 
   map(fn) {
-    return new MyObject(fn(this.value))
+    return Container.of(fn(this.__value));
   }
 }
 
-console.log(new MyObject(3).map(_.add(2)));
+console.log(Container.of(3).map(_.add(2)));
+
+console.log(
+  _.map(
+    _.compose(
+      _.get('length'),
+      _.append(' bistoufly')
+    ),
+    Container.of('wanegaine')
+  )
+);

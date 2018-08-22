@@ -14,6 +14,8 @@ const firstLetter2 = _.map(_.first);
 console.log(firstLetter1(words));
 console.log(firstLetter2(words));
 
+
+
 // pick and sort
 
 const metallica = [

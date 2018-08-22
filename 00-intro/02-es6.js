@@ -12,7 +12,8 @@ var test = function(x) {
 
 const test = x => x + 8;
 const test = x => {
-  return x + 8;
+  if (x < 0) { return -x; }
+  return x;
 }
 
 // * rest params
