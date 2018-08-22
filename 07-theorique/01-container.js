@@ -2,7 +2,7 @@ class Container {
   constructor(value) {
     this.__value = value;
   }
-
+  // of :: a -> Container a
   static of(value) {
     return new Container(value);
   }

@@ -2,6 +2,7 @@ const _ = require('../helpers');
 
 // ? compliqué de comprendre ce qui se passe en cas d'erreur
 
+// dasherize :: String -> String
 // var dasherize = _.compose(
 //   _.join('-'),
 //   _.lower,
@@ -10,6 +11,7 @@ const _ = require('../helpers');
 //   _.replace(/[^\w\-]+/g, '')
 // );
 
+// dasherize :: String -> String
 var dasherize = _.compose(
   _.join('-'),
   _.lower,

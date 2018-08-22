@@ -13,10 +13,12 @@ class Maybe {
     this.__value = value;
   }
 
+  // of :: a -> Maybe a
   static of(value) {
     return new Maybe(value);
   }
 
+  // map :: (a -> b) -> Maybe b
   map(fn) {
     return _.isNil(this.__value) ? Maybe.of(null) : Maybe.of(fn(this.__value));
   }

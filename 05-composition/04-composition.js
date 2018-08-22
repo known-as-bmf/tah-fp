@@ -1,17 +1,17 @@
 const _ = require('../helpers');
 
-// ? composition de composition 😎
-
+// ? composition de compositions 😎
+// pipe1 :: List Int -> List Int
 const pipe1 = _.pipe(
   _.filter(x => x >= 5),
   _.map(x => x * x)
 );
-
+// pipe2 :: List Int -> Int
 const pipe2 = _.pipe(
   pipe1,
   _.first
 );
-
+// pipe3 :: List Int -> String
 const pipe3 = _.pipe(
   pipe2,
   v => v * 2 - 8,

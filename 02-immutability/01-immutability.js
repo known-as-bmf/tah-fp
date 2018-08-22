@@ -3,7 +3,8 @@
 // ? principe: quand on crée un objet, il est gelé
 // ? on ne peux plus changer ses propriétés
 
-// ? exemple: formulaire edition et 2 way binding
+// ? thread safe
+// ? concept de "states"
 
 const me = {
   id: 20,
@@ -26,7 +27,7 @@ try {
   console.error(e);
 }
 
-// ! attention
+// ! immuatbilité généralement "shallow" en js
 me.address.street = '15 chemin du Petit Filou';
 
 console.log(me);

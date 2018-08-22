@@ -31,6 +31,7 @@ console.log('classic', classic);
 
 // ? composition de fonction partielles
 // ? elles prennent 1 argument
+// pipeFn :: List Int -> List Int
 const pipeFn = _.pipe(
   _.map(i => i + 5),
   _.map(i => i * 2),
@@ -48,9 +49,10 @@ console.log('piped', piped);
 const replaceVoyelle = _.replace(/[aeiou]/gi);
 const crunchSpaces = _.replace(/\s\s+/g, ' ');
 
+console.log(crunchSpaces(replaceVoyelle('', 'Le petit oiseau a pris sa volée')));
+
 _.compose(
   console.log,
-  _.replace('é', ''),
   crunchSpaces,
   replaceVoyelle('')
 )('Le petit oiseau a pris sa volée');

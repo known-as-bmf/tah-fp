@@ -10,6 +10,7 @@ function ektipepipapa(a, b, c) {
   console.log(a, b, c);
 }
 
+// kapoué :: String -> String -> String -> void
 const kapoué = curry(ektipepipapa, 3);
 
 const h = 'Hello';

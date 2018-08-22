@@ -17,10 +17,12 @@ class Container {
     this.__value = value;
   }
 
+  // of :: a -> Container a
   static of(value) {
     return new Container(value);
   }
 
+  // map :: (a -> b) -> Container b
   map(fn) {
     return Container.of(fn(this.__value));
   }
