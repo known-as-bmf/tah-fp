@@ -1,15 +1,20 @@
-// ? composition ?
+// ? composition ? issu de la theorie des categories
 
-// ? compose(f, g)(x) === f(g(x))
+// ? a -> b, b -> c
+// ? a -> c
+
+// ? compose(f, g)(a) === f(g(a))
 // compose :: (b -> c), (a -> b) -> (a -> c)
 var compose = (f, g) => x => f(g(x));
-// pipe :: (a -> b), (b -> c) -> (a -> c)
-var pipe = (f, g) => x => g(f(x));
 
 // toUpperCase :: String -> String
 var toUpperCase = x => x.toUpperCase();
 // exclaim :: String -> String
 var exclaim = x => x + '!';
+
+const str = 'mordu, mordu, morduuuuu';
+
+console.log(exclaim(toUpperCase(str)));
 
 // shout :: String -> String
 var shout = compose(
@@ -17,4 +22,11 @@ var shout = compose(
   toUpperCase
 );
 
-console.log(shout('mordu, mordu, morduuuuu'));
+console.log(shout(str));
+
+// pipe :: (a -> b), (b -> c) -> (a -> c)
+var pipe = (f, g) => x => g(f(x));
+var shout = compose(
+  toUpperCase,
+  exclaim
+);

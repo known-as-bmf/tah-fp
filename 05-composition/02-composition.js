@@ -1,4 +1,4 @@
-const _ = require('../helpers');
+const R = require('ramda');
 
 // ? effectuer plusieurs operations sur une collection
 const arr = [4, 6, 8];
@@ -7,17 +7,21 @@ const arr = [4, 6, 8];
 const chaining = arr
   .map(i => i + 5)
   .map(i => i * 2)
-  .filter(i => i <= 25);
+  .filter(i => i <= 25)
+  .join(' ');
 
 console.log('chaining', chaining);
 // ! tout n'est pas faisable
 // ! sans wrapper la collection ou etendre le prototype
 
 // ? imbrication d'appels
-const classic = _.filter(i => i <= 25,
-  _.map(i => i * 2,
-    _.map(i => i + 5,
-      arr
+const classic = R.join(
+  ' ',
+  R.filter(
+    i => i <= 25,
+    R.map(
+      i => i * 2,
+      R.map(i => i + 5, arr)
     )
   )
 );
@@ -32,27 +36,17 @@ console.log('classic', classic);
 // ? composition de fonction partielles
 // ? elles prennent 1 argument
 // pipeFn :: List Int -> List Int
-const pipeFn = _.pipe(
-  _.map(i => i + 5),
-  _.map(i => i * 2),
-  _.filter(i => i <= 25)
+const pipeFn = R.pipe(
+  R.map(i => i + 5),
+  R.map(i => i * 2),
+  R.filter(i => i <= 25),
+  R.join(' ')
 );
 const piped = pipeFn(arr);
 
 console.log('piped', piped);
-// ? les _.map utilisés dans la façon "classique"
+// ? les R.map utilisés dans la façon "classique"
 // ? et la façon "composée" sont la même fonction !!!
 // ? currying = 😍
 
 // ? la fonction pipeFn est réutilisable !!
-
-const replaceVoyelle = _.replace(/[aeiou]/gi);
-const crunchSpaces = _.replace(/\s\s+/g, ' ');
-
-console.log(crunchSpaces(replaceVoyelle('', 'Le petit oiseau a pris sa volée')));
-
-_.compose(
-  console.log,
-  crunchSpaces,
-  replaceVoyelle('')
-)('Le petit oiseau a pris sa volée');

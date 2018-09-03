@@ -1,3 +1,5 @@
+// ? function taking function as argument
+
 const arr = [
   { n: 0, sq: 0 },
   { n: 1, sq: 1 },
@@ -11,18 +13,8 @@ const arr = [
   { n: 9, sq: 81 }
 ];
 
-function filterList(l, fn) {
-  const target = [];
-  for (const obj of l) {
-    if (fn(obj)) {
-      target.push(obj);
-    }
-  }
-  return target;
-}
-
-const target = filterList(arr, obj => obj.n >= 5);
-const target2 = filterList(arr, obj => obj.n < 5);
+const target = arr.filter(obj => obj.n >= 5);
+const target2 = arr.filter(obj => obj.n < 5);
 
 console.log(target);
 console.log(target2);

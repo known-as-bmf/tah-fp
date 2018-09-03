@@ -1,12 +1,6 @@
-const _ = require('../helpers');
+const R = require('ramda');
 
-// replaceVoyelle :: String -> String -> String
-const replaceVoyelle = _.replace(/[aeiou]/gi);
-// replaceVoyelleWithStar :: String -> String
-const replaceVoyelleWithStar = replaceVoyelle('*');
+// getOdds :: List Int -> List Int
+const getOdds = R.filter(R.modulo(2))
 
-// crunchSpaces :: String -> String
-const crunchSpaces = _.replace(/\s\s+/g, ' ');
-
-console.log(replaceVoyelleWithStar('Elle est où la poulette ?'));
-console.log(crunchSpaces(replaceVoyelle('', 'Le petit oiseau a pris sa volée')));
+console.log(getOdds([1, 2, 3, 4, 5]));

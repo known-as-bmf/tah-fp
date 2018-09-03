@@ -1,9 +1,9 @@
-const _ = require('../helpers');
+const R = require('ramda');
 
 // ? rends le code plus lisible / compréhensible
 
 // add :: Number -> Number -> Number
-const add = _.curry((a, b) => a + b);
+const add = R.curry((a, b) => a + b);
 
 // add1 :: Number -> Number
 const add1 = add(1);
@@ -13,4 +13,4 @@ const add1 = add(1);
 // map :: (a -> b) -> List a -> List b
 
 // reduce :: ((b, a) -> b) -> b -> List a -> b
-console.log(_.reduce(_.add, 0, [0, 1, 2, 3]));
+R.reduce(R.add, 0, [0, 1, 2, 3]);

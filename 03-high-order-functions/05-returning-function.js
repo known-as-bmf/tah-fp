@@ -1,5 +1,3 @@
-const _ = require('../helpers');
-
 // ? function returning a function
 
 const reverseArgs = fn => (...args) => fn(...args.reverse());

@@ -4,12 +4,15 @@ function add(a, b) {
 }
 
 // ? on veut pouvoir "pré-remplir" un argument
+const arr = [1, 2, 3, 2, 4, 6, 5, 8];
+
+arr.map(b => add(10, b));
+
 function addTen(b) {
   return add(10, b);
 }
 
-console.log(add(10, 24));
-console.log(addTen(24));
+arr.map(addTen);
 
 // ? et si on a besoin de "addTwenty", "addFifty"... ?
 
@@ -21,11 +24,7 @@ function addFifty(b) {
   return add(50, b);
 }
 
-const arr = [2, 4, 6, 8];
-const mapArr = arr
+arr
   .map(addTen)
   .map(addTwenty)
   .map(addFifty);
-
-console.log(arr);
-console.log(mapArr);
