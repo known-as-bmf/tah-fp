@@ -1,17 +1,17 @@
-const _ = require('../helpers');
+const R = require('ramda');
 
 // ? peut servir d'optimisation dans certains cas
 const arr = [4, 6, 8];
 
 // pipeFn :: List Int -> List Int
-const pipeFn = _.pipe(
-  _.map(i => i + 5),
-  _.map(i => i * 2)
+const pipeFn = R.pipe(
+  R.map(i => i + 5),
+  R.map(i => i * 2)
 );
 
 // optimFn :: List Int -> List Int
-const optimFn = _.map(
-  _.pipe(
+const optimFn = R.map(
+  R.pipe(
     i => i + 5,
     i => i * 2
   )

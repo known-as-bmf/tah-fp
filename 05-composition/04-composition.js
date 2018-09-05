@@ -1,18 +1,18 @@
-const _ = require('../helpers');
+const R = require('ramda');
 
 // ? composition de compositions 😎
 // pipe1 :: List Int -> List Int
-const pipe1 = _.pipe(
-  _.filter(x => x >= 5),
-  _.map(x => x * x)
+const pipe1 = R.pipe(
+  R.filter(x => x >= 5),
+  R.map(x => x * x)
 );
 // pipe2 :: List Int -> Int
-const pipe2 = _.pipe(
+const pipe2 = R.pipe(
   pipe1,
-  _.first
+  R.head
 );
 // pipe3 :: List Int -> String
-const pipe3 = _.pipe(
+const pipe3 = R.pipe(
   pipe2,
   v => v * 2 - 8,
   v => 'Pipes are fun ❤ Here is proof => ' + v

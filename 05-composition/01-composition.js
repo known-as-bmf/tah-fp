@@ -24,6 +24,7 @@ var shout = compose(
 
 console.log(shout(str));
 
+// ? pipe(f, g)(a) === g(f(a))
 // pipe :: (a -> b), (b -> c) -> (a -> c)
 var pipe = (f, g) => x => g(f(x));
 var shout = compose(

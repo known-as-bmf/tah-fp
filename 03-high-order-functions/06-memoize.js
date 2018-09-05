@@ -1,4 +1,4 @@
-const _ = require('../helpers');
+const R = require('ramda');
 
 // ? transformer un fonction impure en fonction pure
 
@@ -8,15 +8,15 @@ const memoize = f => {
     const key = JSON.stringify(args);
     const cached = cache[key];
 
-    if (_.isNil(cached)) return cache[key] = f(...args);
+    if (R.isNil(cached)) return (cache[key] = f(...args));
     return cached;
   };
-}
+};
 
 let name = 'Julien';
 
 function updateName(fragment) {
-  return name += fragment;
+  return (name += fragment);
 }
 
 const memoizedUpdateName = memoize(updateName);

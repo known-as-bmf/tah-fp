@@ -1,20 +1,18 @@
-const _ = require('../helpers');
-const l = require('lodash');
+const R = require('ramda');
+const _ = require('lodash');
 
 // first from array items
 
 const words = ['fp', 'is', 'awesome'];
 
 function firstLetter1(words) {
-  return l.map(words, word => l.first(word));
+  return _.map(words, word => _.first(word));
 }
 
-const firstLetter2 = _.map(_.first);
+const firstLetter2 = R.map(R.head);
 
 console.log(firstLetter1(words));
 console.log(firstLetter2(words));
-
-
 
 // pick and sort
 
@@ -28,16 +26,15 @@ const metallica = [
 ];
 
 function sortedNamesByAge1(members) {
-  return l
-    .chain(members)
-    .sortBy(member => l.get(member, 'yob'))
-    .map(member => l.get(member, 'name'))
+  return _.chain(members)
+    .sortBy(member => _.get(member, 'yob'))
+    .map(member => _.get(member, 'name'))
     .value();
 }
 
-const sortedNamesByAge2 = _.compose(
-  _.map(_.get('name')),
-  _.sortBy(_.get('yob'))
+const sortedNamesByAge2 = R.compose(
+  R.map(R.prop('name')),
+  R.sortBy(R.prop('yob'))
 );
 
 console.log(sortedNamesByAge1(metallica));
