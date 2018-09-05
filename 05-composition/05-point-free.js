@@ -5,6 +5,7 @@ const R = require('ramda');
 const pow = R.curry((a, b) => Math.pow(b, a));
 // prepend :: String -> String -> String
 const prepend = R.curry((a, b) => a + b);
+// see https://github.com/ramda/ramda/issues/1497
 // gte :: Int -> Bool
 const gte = R.flip(R.gte);
 // subtract :: Int -> Int
